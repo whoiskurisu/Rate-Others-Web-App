@@ -1,0 +1,165 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: border-box;
+}
+
+#body {
+  background-image: url("../images/1.jpg");
+  background-size: cover;
+}
+
+/* Sign up */
+
+.sign-up-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  top: 60px;
+  left: 500px;
+  border: 2px solid #0f1111;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 85vh;
+  width: 420px;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Container for title and icon close */
+.wrapper {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 150px;
+  margin-bottom: 20px;
+}
+
+.sign-up-container .icon-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  font-size: 2em;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.855);
+  color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#sign-up-title {
+  align-content: center;
+  height: 45px;
+  font-size: 2em;
+  text-align: center;
+  font-weight: 530;
+  width: 170px;
+  /* margin: 20px 0px 0px 20px; */
+  font-family: "Courier New", monospace;
+  padding: 3px;
+  border: 2px solid black;
+  /* border-right: transparent; */
+  border-left: transparent;
+  border-top: transparent;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* All user input placeholders */
+.inputPlaceholder {
+  position: relative;
+  border-bottom: 2px solid;
+  /* margin-left: 20px; */
+  width: 365px;
+  margin-top: 40px;
+}
+
+.inputPlaceholder label {
+  position: absolute;
+  top: 27%;
+  left: 5px;
+  font-size: 1.1em;
+  font-weight: 100;
+  transition: 0.1s;
+  font-family: Helvetica, sans-serif;
+  color: grey;
+}
+
+.inputPlaceholder input {
+  width: 89.3%;
+  height: 35px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.1em;
+  font-weight: 500;
+  font-family: Helvetica, sans-serif;
+  padding-left: 5px;
+}
+
+.inputPlaceholder .icon {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  font-size: 1.4em;
+  color: rgba(0, 0, 0, 0.855);
+
+}
+
+.inputPlaceholder input:focus~label,
+.inputPlaceholder input:valid~label {
+  top: -20px;
+}
+
+/* Select tutor or student */
+.roles {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.roles .roleBtn {
+  border: 1px solid black;
+  border-radius: 30px;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  align-content: center;
+  font-family: "Courier New", monospace;
+  font-size: 20px;
+  margin-top: 25px;
+  cursor: pointer;
+  background: whitesmoke;
+}
+
+.roleBtn:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* 'Sign up' Button */
+.btn {
+  margin: 35px 0 20px 0px;
+  width: 365px;
+  height: 45px;
+  background-color: rgba(0, 0, 0, 0.855);
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.6em;
+  color: white;
+  font-weight: 500;
+  font-family: "Courier New", monospace;
+}
+

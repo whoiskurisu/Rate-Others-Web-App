@@ -1,0 +1,156 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: border-box;
+}
+
+body {
+  background-color: #172d13;
+}
+
+#main-text {
+  font-size: 50px;
+  font-family: "Paytone One", sans-serif;
+  text-align: center;
+  margin: 35px 0px 35px 0px;
+  color: white;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  align-items: center;
+}
+
+.button {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 5px rgba(255, 255, 255, 255);
+  color: #d76f30;
+  /* border: solid black 1px; */
+  border-radius: 50%;
+  /* background-color: black; */
+}
+
+.button .arrow {
+  height: 150px;
+  width: 150px;
+  cursor: pointer;
+}
+
+#left-arrow {
+  padding-right: 9px;
+}
+#right-arrow {
+  padding-left: 9px;
+}
+
+#image {
+  height: 470px;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0px 0px 5px rgba(1, 1, 1, 1);
+  background-size: cover;
+}
+
+.stack {
+  position: absolute;
+  height: 440px;
+  width: 200px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: #fecd45;
+  filter: blur(10px);
+}
+
+#stack1 {
+  left: -15px;
+  top: 15px;
+  z-index: -1;
+  display: none;
+}
+
+#stack2 {
+  top: 15px;
+  right: -15px;
+  z-index: -1;
+  display: none;
+
+}
+
+.slide-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-top: 30px;
+}
+.slider {
+  -webkit-appearance: none;
+  border-radius: 40px;
+  width: 300px; /* Full-width */
+  height: 17px; /* Specified height */
+  background: #6bb77b; /* Grey background */
+  outline: none; /* Remove outline */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border-radius: 5px;
+  height: 17px;
+  width: 10px;
+  background: black;
+}
+
+#rating-check {
+  height: 60px;
+  gap: 30px;
+  display: flex;
+  align-items: center;
+}
+
+#rating{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center ;
+  text-align: center;
+}
+
+#rating-name{
+  font-size: 55px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+#rating-value {
+  gap: 10px;
+  font-weight: bold;
+  width: 40px;
+  padding: 10px;
+  background-color: #fecd45;
+  border-radius: 10px;
+  border: none;
+  font-size: 40px;
+  font-family: "Lato", sans-serif;
+  margin-top: 5px;
+}
+
+#submit {
+  /* margin-left: 45px;
+  margin-top: 35px; */
+  background-color: #6bb77b;
+  border: none;
+  border-radius: 50%;
+  font-size: 45px;
+  font-weight: 700;
+  padding: 5px;
+  box-shadow: 0px 0px 5px rgba(1, 1, 1, 1);
+  cursor: pointer;
+}

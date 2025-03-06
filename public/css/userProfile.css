@@ -1,0 +1,274 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: border-box;
+  }
+  
+  body {
+    background-color: #9daaf2;
+    max-width: 100%;
+    max-height: 100%;
+    overflow-x: hidden;
+  }
+  
+  /*----------------------------------------------------------------*/
+  
+  /* Main container */
+  #container {
+    height: 670px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 30px;
+  }
+  
+  #title {
+    background-color: #f4db7d;
+    font-size: 65px;
+    height: 100px;
+    font-family: "Paytone One", sans-serif; 
+    text-align: center;
+    border-radius: 10px 10px 0px 0px;
+  }
+  
+  #profile-card {
+    height: 450px;
+    background-color: #1a2238;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 30px;
+    border-radius: 0px 0px 10px 10px;
+  }
+  
+  #image {
+    border-radius: 50%;
+    height: 400px;
+    width: 400px;
+    background-color: white;
+    position: relative;
+    background-size: cover;
+  }
+  
+  #edit-image {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    text-align: center;
+    font-size: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #f4db7d;
+    font-family: "Lato", sans-serif;
+  }
+  
+  #details-container {
+    background-color: none;
+    height: 100%;
+    width: 810px;
+    display: flex;
+    margin-top: 35px;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  #details-container #name {
+    font-size: 70px;
+    font-family: "Paytone One", sans-serif;
+    color: white;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  #name #name-edit {
+    cursor: pointer;
+    font-size: 50px;
+  }
+  
+  #details-container #stats {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .ratings {
+    border-radius: 20px;
+    background-color: #f4db7d;
+    height: 250px;
+    width: 300px;
+    font-family: "Lato", sans-serif;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+  }
+  
+  .ratings-title {
+    font-size: 37px;
+    text-align: center;
+    margin-top: 20px;
+    font-family: "Lucida Handwriting", cursive;
+    background-color: #f4db7d;
+  }
+  
+  .ratings-value {
+    font-size: 50px;
+    text-align: center;
+    font-weight: 600;
+    background-color: white;
+    margin-top: 9px;
+  }
+  
+  /*----------------------------------------------------------------*/
+  
+  /* Footer */
+  #footer {
+    padding: 15px;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    font-family: "Lato", sans-serif;
+  }
+  
+  #footer-content {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+  }
+  
+  #footer-content a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  
+  #icons {
+    display: flex;
+    gap: 20px;
+    font-size: 23px;
+  }
+  
+  #copyright {
+    font-size: 17px;
+    letter-spacing: 0.3px;
+  }
+  
+  /*----------------------------------------------------------------*/
+  
+  /* 'Changing Profile Picture' pop-up */
+  #image-upload.active #overlay {
+    display: block;
+  }
+  
+  #image-upload.active #profile-content {
+    transform: translate(-50%, -50%) scale(1);
+    transition: all 500ms ease;
+  }
+  
+  #image-upload #overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1;
+    display: none;
+  }
+  
+  #image-upload #profile-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: #fff;
+    width: 500px;
+    height: 620px;
+    z-index: 2;
+    text-align: center;
+    border-radius: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  #profile-content #profile-title {
+    width: 100%;
+    background-color: #f4db7d;
+    font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: "Lato", sans-serif;
+  }
+  
+  #profile-content #icon-close {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    font-size: 2em;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+  }
+  
+  #profile-content #preview-image {
+    height: 450px;
+    width: 422px;
+    border: solid black 1px;
+    border-radius: 10px;
+  }
+  
+  #profile-content #image-upload-form {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 25px;
+  }
+  
+  /* We cannot customize input[type="file"]'s properties which is why I am creating a label
+  and editing its properties while hiding the deafult input[type="file"]'s behaviour*/
+  input[type="file"] {
+    display: none;
+  }
+  
+  /* Label for file-type input */
+  #custom-image-upload {
+    border: none;
+    cursor: pointer;
+    background-color: #f4db7d;
+    font-size: 25px;
+    height: 40px;
+    width: 200px;
+    border-radius: 10px;
+    align-content: center;
+    font-family: "Lato", sans-serif;
+    box-shadow: 2px 2px 5px rgba(0.1, 0.1, 0.1, 0.1);
+  }
+  
+  #image-submit {
+    background-color: #9daaf2;
+    font-size: 25px;
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    align-content: center;
+    font-family: "Lato", sans-serif;
+    box-shadow: 0px 0px 5px rgba(0.1, 0.1, 0.1, 0.1);
+  }
+  
+  

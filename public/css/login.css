@@ -1,0 +1,217 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: border-box;
+  }
+  
+  #body {
+  }
+  
+  /* Login */
+  
+  .log-in-container {
+    position: relative;
+    top: 100px;
+    left: 500px;
+    border: 2px solid #0f1111;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 68vh;
+    width: 400px;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .log-in-container .icon-close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    font-size: 2em;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.855);
+    color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .wrapper {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  #log-in-title {
+    align-content: center;
+    font-size: 2em;
+    text-align: center;
+    height: 45px;
+    font-weight: 530;
+    width: 300px;
+    margin: 0px 0px 0px 0px;
+    font-family: "Courier New", monospace;
+    padding: 3px;
+    border: 2px solid black;
+    /* border-right: transparent; */
+    border-left: transparent;
+    border-top: transparent;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  #unameID {
+    margin-top: 70px;
+  }
+  .uname-pwd {
+    position: relative;
+    border-bottom: 2px solid;
+    margin-left: 20px;
+    width: 365px;
+    margin-top: 25px;
+  }
+  
+  .uname-pwd label {
+    position: absolute;
+    top: 27%;
+    left: 5px;
+    font-size: 1.1em;
+    font-weight: 100;
+    transition: 0.1s;
+    font-family: Helvetica, sans-serif;
+    color: grey;
+  }
+  
+  .uname-pwd input:focus ~ label,
+  .uname-pwd input:valid ~ label {
+    top: -20px;
+  }
+  
+  .uname-pwd input {
+    width: 89.3%;
+    height: 35px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.1em;
+    font-weight: 550;
+    font-family: Helvetica, sans-serif;
+  
+    padding-left: 5px;
+  }
+  
+  .uname-pwd .icon {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    font-size: 1.4em;
+  }
+  
+  .remember-forgot {
+    font-size: 1em;
+  
+    margin: 20px 0 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    font-family: Helvetica, sans-serif;
+  }
+  
+  #remember-me {
+    margin-left: -103px;
+  }
+  
+  .remember-forgot input {
+    margin-right: 3px;
+    height: 17px;
+    width: 17px;
+  }
+  
+  .remember-forgot a {
+    text-decoration: none;
+    margin-right: 20px;
+  }
+  
+  .btn {
+    margin: 10px 0 0 20px;
+    width: 365px;
+    height: 45px;
+    background: rgba(0, 0, 0, 0.855);
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.6em;
+    color: white;
+    font-weight: 500;
+    font-family: "Courier New", monospace;
+  }
+  
+  .or-heading {
+    width: 365px;
+    text-align: center;
+    border-bottom: 1px solid grey;
+    line-height: 0.3px;
+    margin: 30px 0 30px 20px;
+    color: grey;
+  }
+  
+  .or-heading span {
+    background: white;
+    padding: 0 10px;
+    font-weight: 100;
+  }
+  
+  .other-login {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .other-login .logos {
+    height: 45px;
+    width: 90px;
+    border: 1px solid black;
+    color: rgba(0, 0, 0, 0.855);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  #apple {
+    margin-top: -3px;
+    font-size: 30px;
+  }
+  
+  #google {
+    font-size: 28px;
+  }
+  
+  #fb {
+    font-size: 32px;
+  }
+  
+  #yahoo {
+    font-size: 26px;
+  }
+  
+  .sign-up {
+    font-size: 1em;
+    text-align: center;
+    /* font-weight: 500; */
+    margin: 25px 0 10px;
+    font-family: Helvetica, sans-serif;
+  }
+  
+  .sign-up a {
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
