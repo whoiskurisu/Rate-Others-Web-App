@@ -39,8 +39,8 @@ function rateSubmit() {
   const data = {
     'sentBy': SentBy,
     'sentTo': SentTo,
-    'ratingsGiven': value.textContent.split('/')[0],
-    'ratingsReceived': value.textContent.split('/')[0],
+    'ratingGiven': value.textContent.split('/')[0],
+    'ratingReceived': value.textContent.split('/')[0],
   };
 
   fetch("http://localhost:5000/api/v1/rate", {

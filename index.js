@@ -182,14 +182,12 @@ app.post("/api/v1/signup", async (req, res) => {
 
   if (checkUname) {
     return res.json({ success: false, message: "Username already in use" });
-  } else {
-    if (checkEmail) {
-      return res.json({ success: false, message: "Email already in use" });
-    }
-    else {
-      await signupCollection.create(req.body);
-      return res.status(200).json({ success: true, message: "Success" }); // JSON response
-    }
+  } else if (checkEmail) {
+    return res.json({ success: false, message: "Email already in use" });
+  }
+  else {
+    await signupCollection.create(req.body);
+    return res.status(200).json({ success: true, message: "Success" }); // JSON response
   }
 });
 
@@ -222,17 +220,25 @@ app.post("/api/v1/login", async (req, res) => {
 // Rating functionality
 app.post("/api/v1/rate", async (req, res) => {
 
-  // Increment the total ratings given
-  await signupCollection.updateOne(
-    { Username: req.body.sentBy },
-    { $inc: { RatingsGiven: req.body.ratingsGiven } }
-  );
+  const sentBy = req.body.sentBy;
+  const ratingGiven = req.body.ratingGiven;
+  const sentTo = req.body.sentTo;
+  const ratingReceived = req.body.ratingReceived;
 
-  // Increment the total ratings received
-  await signupCollection.updateOne(
-    { Username: req.body.sentTo },
-    { $inc: { RatingsReceived: req.body.ratingsReceived } }
-  );
+  for (let i = 1; i <= 10; i++) {
+    if (ratingGiven == i && ratingReceived == i) {
+      // Incrementing counter for rating given by 1
+      await signupCollection.updateOne(
+        { Username: sentBy },
+        { $inc: { [`RatingGiven.${i}`]: 1 } }
+      );
+      // Incrementing counter for rating received by 1
+      await signupCollection.updateOne(
+        { Username: sentTo },
+        { $inc: { [`RatingReceived.${i}`]: 1 } }
+      );
+    }
+  }
 
   res.json({ success: true });
 

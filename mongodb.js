@@ -35,15 +35,14 @@ const signupSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  RatingsGiven: {
-    type: Number,
-    required: true,
-    trim: true,
+  // Since writing RatingGiven1 through RatingGiven10 is not efficient we can use an object as the field
+  RatingGiven: { 
+    type: Map,
+    of: Number 
   },
-  RatingsReceived: {
-    type: Number,
-    required: true,
-    trim: true,
+  RatingReceived: {
+     type: Map, 
+     of: Number 
   },
 });
 

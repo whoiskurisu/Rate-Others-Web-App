@@ -18,7 +18,16 @@ form.addEventListener('submit', event => {
     const email = document.querySelector('#email').value.trim();
     const password = document.querySelector('#password').value;
     const cpassword = document.querySelector('#cpassword').value;
-    const initialRating = 0;
+
+    // Creating dynamic objects (as the values of keys are numbers)
+    const ratingReceived = {};
+    const ratingGiven = {};
+
+    // Setting the value for all keys to 0
+    for (let i = 1; i <= 10; i++) {
+        ratingReceived[i] = 0;
+        ratingGiven[i] = 0;
+    }
 
     const data = {
         'FirstName': fname,
@@ -26,8 +35,9 @@ form.addEventListener('submit', event => {
         'Username': uname,
         'Email': email,
         'Password': password,
-        'RatingsGiven': initialRating,
-        'RatingsReceived': initialRating,
+        'RatingReceived': ratingReceived,
+        'RatingGiven': ratingGiven,
+
     };
 
     if (password != cpassword) {

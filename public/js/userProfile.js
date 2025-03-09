@@ -21,8 +21,27 @@ async function fetchData() {
         const usernameValue = document.querySelector("#uname-value");
         usernameValue.textContent = `@${userData.Username}`;
 
-        // const avgRating = document.querySelector("#avg-rating");
-        // avgRating.textContent = userData.AvgRating;
+        let receivedCount = 0;
+        let userRating = 0;
+
+        for (let i = 1; i <= 10; i++) {
+            // Making sure the value is not 0
+            if (userData.RatingReceived[i] > 0) {
+                // Here i is the rating given and userData.RatingReceived[i] is the number of users who gave ratings
+                userRating += i * userData.RatingReceived[i];
+            }
+            // To calculate the total number of users who gave ratings
+            receivedCount += userData.RatingReceived[i];
+        }
+        // Average user rating = Total number of ratings received / Total number of users who gave ratings
+        const avgRating = document.querySelector("#avg-rating");
+        avgRatingValue = userRating / receivedCount;
+        // For 0/0 case
+        if (!avgRatingValue) {
+            avgRating.textContent = "N/A";
+        } else {
+            avgRating.textContent = avgRatingValue.toFixed(2); // Upto 2 decimal places
+        }
 
         const userImage = await fetch(`http://localhost:5000/api/v1/users/${username}/images`);
         const userImageData = await userImage.json();
