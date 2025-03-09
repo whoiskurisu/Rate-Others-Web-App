@@ -8,7 +8,7 @@ function close() {
 // API call on Sign up button
 const form = document.querySelector('#form');
 
-form.addEventListener('submit', async event => {
+form.addEventListener('submit', event => {
 
     event.preventDefault();
 
@@ -19,6 +19,7 @@ form.addEventListener('submit', async event => {
     const email = document.querySelector('#email').value.trim();
     const password = document.querySelector('#password').value;
     const cpassword = document.querySelector('#cpassword').value;
+    const initialRating = 0;
 
     const data = {
         'FirstName': fname,
@@ -26,6 +27,8 @@ form.addEventListener('submit', async event => {
         'Username': uname,
         'Email': email,
         'Password': password,
+        'RatingsGiven' : initialRating,
+        'RatingsReceived' : initialRating,
     };
 
     if (password != cpassword) {
@@ -34,7 +37,7 @@ form.addEventListener('submit', async event => {
     }
 
 
-    await fetch("http://localhost:5000/api/v1/signup", {
+   fetch("http://localhost:5000/api/v1/signup", {
         method: "POST",
         headers: {
             "Content-type": "application/json",

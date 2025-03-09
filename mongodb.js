@@ -34,29 +34,39 @@ const signupSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  RatingsGiven: {
+    type: Number,
+    required: true,
+    trim: true,
+  },
+  RatingsReceived: {
+    type: Number,
+    required: true,
+    trim: true,
+  },
 });
 
 // Collection for signup
 const signupCollection = new mongoose.model("signup-data", signupSchema);
 
 
-// Schema for addProduct
-const profilePic = new mongoose.Schema({
-  Username: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  Email: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-});
+// Schema for profilePic
+// const profilePic = new mongoose.Schema({
+//   Username: {
+//     type: String,
+//     required: true,
+//     trim: true,
+//   },
+//   Email: {
+//     type: String,
+//     required: true,
+//     trim: true,
+//   },
+// });
 
-// Collection for addProduct
-const profilePicCollection = new mongoose.model("profile-picture", profilePic);
+// // Collection for profilePic
+// const profilePicCollection = new mongoose.model("profile-picture", profilePic);
 
 // Exporting
-module.exports = { connectDB, signupCollection, profilePicCollection };
+module.exports = { connectDB, signupCollection };
 

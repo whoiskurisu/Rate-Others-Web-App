@@ -48,7 +48,14 @@ async function fetchData() {
         const userData = await userValue.json();
     
         const name = document.querySelector("#name-value");
+        const ratingsGiven = document.querySelector("#given-ratings");
+        const ratingsReceived = document.querySelector("#received-ratings");
+
+
         name.textContent = userData.FirstName + " " + userData.LastName;
+        ratingsGiven.textContent = userData.RatingsGiven;
+        ratingsReceived.textContent = userData.RatingsReceived;
+
 
 
         const userImage = await fetch(`http://localhost:5000/api/v1/users/${username}/images`);

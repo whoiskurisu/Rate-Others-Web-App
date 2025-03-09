@@ -40,17 +40,13 @@ app.post('/upload/:username', upload.single('imageUpload'), (req, res) => {
 
 // All MongoDB collections
 const { signupCollection } = require("./mongodb");
-const { profilePicCollection } = require("./mongodb");
+// const { profilePicCollection } = require("./mongodb");
 
 //----------------------------------------------------------------//
 
 // All pages
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/html/index.html"));
-});
-
-app.get("/rate", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/html/rate.html"));
 });
 
 app.get("/profile", (req, res) => {
@@ -85,6 +81,16 @@ app.get("/userProfile/:username", async (req, res) => {
   }
 });
 
+app.get("/rate/:username", async (req, res) => {
+  // Checking whether the username is valid in the URL
+  const user = await signupCollection.findOne({ Username: req.params.username })
+  if (user) {
+    res.sendFile(path.join(__dirname, "./public/html/rate.html"));
+  } else {
+    res.status(404).json({ message: "Not found" })
+  }
+});
+
 //----------------------------------------------------------------//
 
 // All /api/v1 data
@@ -110,12 +116,12 @@ app.get('/api/v1/users/:username/images', (req, res) => {
       return res.status(500).json({ error: 'Failed to read directory' });
     }
     // Filter user's images
-    const userImages = files.filter(file => file.startsWith(req.params.username))
+    const userImages = files.filter(file => file.split('-')[0] == req.params.username)
     const latestUserImage = userImages[userImages.length - 1];
 
     // If there is no image
-    if(!latestUserImage){
-      return res.json({ message: "No profile picture"})
+    if (!latestUserImage) {
+      return res.json({ message: "No profile picture" })
     }
 
     // Deleting more than 1 image of a user from the /profilePic directory 
@@ -133,8 +139,6 @@ app.get('/api/v1/users/:username/images', (req, res) => {
       else {
         res.json({ images: latestUserImage })
       }
-
-
     })
   });
 });
@@ -148,7 +152,7 @@ app.get("/api/v1/users/:username/random-image", (req, res) => {
       return res.status(500).json({ error: "Failed to read directory" });
     }
 
-    const filteredImages = files.filter(file => !file.startsWith(req.params.username))
+    const filteredImages = files.filter(file => file.split('-')[0] !== req.params.username)
 
     if (filteredImages.length === 0) {
       return res.status(404).json({ error: "No images found" });
@@ -207,6 +211,25 @@ app.post("/api/v1/login", async (req, res) => {
 });
 
 //----------------------------------------------------------------//
+
+// Rating functionality
+app.post("/api/v1/rate", async (req, res) => {
+
+    // Increment the total ratings given
+    await signupCollection.updateOne(
+      { Username: req.body.sentBy },
+      { $inc: { RatingsGiven: req.body.ratingsGiven } }
+    );
+
+    // Increment the total ratings received
+    await signupCollection.updateOne(
+      { Username: req.body.sentTo },
+      { $inc: { RatingsReceived: req.body.ratingsReceived } }
+    );
+
+    res.json({ success: true });
+
+});
 
 // Console log only if the DB is connected to the server
 const { connectDB } = require('./mongodb');
