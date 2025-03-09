@@ -1,7 +1,35 @@
-# About
-Rate others
+# Rate-Others-Web-App (User rating platform)
 
-# Others
-...
+## Description
 
+ROWA is an online user rating platfornm built on Node.js using the Express.js framework alongside plain CSS, and vanilla JS for the frontend, and MongoDB for the database.
 
+## Getting Started
+
+### Installation
+
+* To download and install Node.js :
+   - Go to https://nodejs.org/en/download/source-code
+   - Download the latest version of Node.js.
+   - Follow the installation steps for your OS.
+   - To verify installation, run the ```node --version``` command in the terminal.
+
+### Executing program
+
+1. Clone the repository:
+```
+git clone https://github.com/whoiskurisu/Rate-Others-Web-App.git
+```
+2. Open the ```rate-others-webapp``` file in VS Code.
+
+3. Open up the integrated VS Code terminal: ``` ctrl + ` ```
+
+4. Run ```npm install``` command.
+
+5. Check whether the dependencies are added to the ```package.json``` file.
+
+6. Run the server:
+```
+node index.js
+```
+7. Open your browser and go to ```localhost:5000```
