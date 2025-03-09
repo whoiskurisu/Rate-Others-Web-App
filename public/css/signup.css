@@ -5,12 +5,23 @@
 }
 
 #body {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 55px;
+}
+
+/* ---------------------------------------------------------------- */
+
+/* Sign up Wrapper */
+.sign-up-wrapper{
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-/* ---------------------------------------------------------------- */
 
 /* Sign up Container*/
 .sign-up-container {
@@ -21,7 +32,6 @@
   border: 2px solid #0f1111;
   border-radius: 10px;
   overflow: hidden;
-  height: 85vh;
   width: 420px;
   background: transparent;
   backdrop-filter: blur(20px);
@@ -130,4 +140,42 @@
   color: white;
   font-weight: 500;
   font-family: "Courier New", monospace;
+}
+
+/* ---------------------------------------------------------------- */
+
+/* Footer */
+#footer {
+  width: 100%;
+  padding: 15px;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  font-family: "Lucida Handwriting", cursive;
+}
+
+#footer-content {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+#footer-content a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+#icons {
+  display: flex;
+  gap: 20px;
+  font-size: 23px;
+}
+
+#copyright {
+  font-size: 17px;
 }

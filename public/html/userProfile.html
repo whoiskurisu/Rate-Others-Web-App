@@ -29,23 +29,20 @@
         <div id="name">
           <span id="name-value"></span><ion-icon name="create-outline" id="name-edit"></ion-icon>
         </div>
-        <div id="stats">
-          <div id="ratings-sent" class="ratings">
-            <div class="ratings-title">Total Ratings <br> Given</div>
-            <hr />
-            <div class="ratings-value" id="given-ratings"></div>
-          </div>
-          <div id="ratings-received" class="ratings">
-            <div class="ratings-title">Total Ratings <br>Received</div>
-            <hr />
 
-            <div class="ratings-value" id="received-ratings"></div>
+        <div class="uname-and-rating-wrapper">
+          <div id="uname">
+            <span id="uname-value"></span>
+          </div>
+          <div class="rating">
+            <span class="rating-title">user rating</span>
+            <span class="rating-value" id="avg-rating">9.25</span>
           </div>
         </div>
       </div>
     </div>
 
-<!---------------------------------------------------------------------->
+    <!---------------------------------------------------------------------->
 
     <!-- Profile image upload  -->
     <div id="image-upload">
@@ -66,16 +63,17 @@
 
           <!-- Creating label for CSS purpose -->
           <label for="image-upload-input" id="custom-image-upload">
-            Choose File
+            choose file
           </label>
           <input type="file" name="imageUpload" id="image-upload-input" />
-          <input type="submit" value="Upload" id="image-submit" />
+          <input type="submit" value="upload" id="image-submit" />
         </form>
       </div>
     </div>
   </div>
+  </div>
 
-<!---------------------------------------------------------------------->
+  <!---------------------------------------------------------------------->
 
   <!-- Footer -->
   <footer id="footer">

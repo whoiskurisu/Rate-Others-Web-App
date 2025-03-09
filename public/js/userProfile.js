@@ -16,15 +16,13 @@ async function fetchData() {
         const userData = await userValue.json();
 
         const name = document.querySelector("#name-value");
-        const ratingsGiven = document.querySelector("#given-ratings");
-        const ratingsReceived = document.querySelector("#received-ratings");
-
-
         name.textContent = userData.FirstName + " " + userData.LastName;
-        ratingsGiven.textContent = userData.RatingsGiven;
-        ratingsReceived.textContent = userData.RatingsReceived;
 
+        const usernameValue = document.querySelector("#uname-value");
+        usernameValue.textContent = `@${userData.Username}`;
 
+        // const avgRating = document.querySelector("#avg-rating");
+        // avgRating.textContent = userData.AvgRating;
 
         const userImage = await fetch(`http://localhost:5000/api/v1/users/${username}/images`);
         const userImageData = await userImage.json();
@@ -37,7 +35,7 @@ async function fetchData() {
         }
 
     } catch (error) {
-        console.error(error);
+        console.log("Error fetching data");
     }
 }
 

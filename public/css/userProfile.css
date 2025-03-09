@@ -6,24 +6,22 @@
 
 body {
   background-color: #9daaf2;
-  max-width: 100%;
-  max-height: 100%;
   overflow-x: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  gap: 55px;
 }
 
 /*----------------------------------------------------------------*/
 
 /* Main container */
 #container {
-  height: 670px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  margin-top: 55px;
+  justify-content: center;
 }
 
 #title {
@@ -36,13 +34,12 @@ body {
 }
 
 #profile-card {
-  height: 450px;
   background-color: #1a2238;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 50px;
-  padding: 30px;
+  padding: 40px;
   border-radius: 0px 0px 10px 10px;
 }
 
@@ -70,9 +67,7 @@ body {
 #details-container {
   background-color: none;
   height: 100%;
-  width: 810px;
   display: flex;
-  margin-top: 35px;
   flex-direction: column;
   gap: 20px;
 }
@@ -86,44 +81,61 @@ body {
   align-items: center;
 }
 
-#name #name-edit {
+#details-container #name #name-edit {
   cursor: pointer;
   font-size: 50px;
 }
 
-#details-container #stats {
+#details-container .uname-and-rating-wrapper {
   display: flex;
+  flex-direction: column;
   gap: 30px;
 }
 
-.ratings {
+.uname-and-rating-wrapper #uname {
   border-radius: 20px;
   background-color: #f4db7d;
-  height: 250px;
-  width: 300px;
-  font-family: "Lato", sans-serif;
+  height: 100px;
+  width: 400px;
   display: flex;
-  gap: 15px;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
-.ratings-title {
-  font-size: 37px;
-  text-align: center;
-  margin-top: 20px;
-  font-family: "Lucida Handwriting", cursive;
-  background-color: #f4db7d;
+.uname-and-rating-wrapper #uname:hover {
+  background-color: black;
+  color: #f4db7d;
 }
 
-.ratings-value {
+#uname #uname-value {
   font-size: 50px;
-  text-align: center;
-  font-weight: 600;
-  background-color: white;
-  margin-top: 9px;
+  font-family: "Paytone One", sans-serif;
 }
 
-/*----------------------------------------------------------------*/
+.uname-and-rating-wrapper .rating {
+  border-radius: 20px;
+  background-color: #f4db7d;
+  height: 100px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+
+.uname-and-rating-wrapper .rating .rating-title {
+  font-family: "Lucida Handwriting", cursive;
+  font-size: 19px;
+  margin-bottom: -15px;
+}
+
+.uname-and-rating-wrapper .rating .rating-value {
+  font-family: "Paytone One", sans-serif;
+  font-size: 50px
+}
+
+/* ---------------------------------------------------------------- */
 
 /* Footer */
 #footer {
@@ -135,7 +147,7 @@ body {
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  font-family: "Lato", sans-serif;
+  font-family: "Lucida Handwriting", cursive;
 }
 
 #footer-content {
@@ -159,7 +171,6 @@ body {
 
 #copyright {
   font-size: 17px;
-  letter-spacing: 0.3px;
 }
 
 /*----------------------------------------------------------------*/
@@ -207,10 +218,12 @@ body {
 #profile-content #profile-title {
   width: 100%;
   background-color: #f4db7d;
-  font-size: 30px;
+  font-size: 25px;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-family: "Lato", sans-serif;
+  font-family: "Paytone One", sans-serif;
+
+
 }
 
 #profile-content #icon-close {
@@ -254,24 +267,24 @@ input[type="file"] {
   border: none;
   cursor: pointer;
   background-color: #f4db7d;
-  font-size: 25px;
+  font-size: 22px;
   height: 40px;
   width: 200px;
   border-radius: 10px;
   align-content: center;
-  font-family: "Lato", sans-serif;
+  font-family: "Paytone One", sans-serif;
   box-shadow: 2px 2px 5px rgba(0.1, 0.1, 0.1, 0.1);
 }
 
 #image-submit {
   background-color: #9daaf2;
-  font-size: 25px;
+  font-size: 22px;
   height: 40px;
   width: 100px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
   align-content: center;
-  font-family: "Lato", sans-serif;
+  font-family: "Paytone One", sans-serif;
   box-shadow: 0px 0px 5px rgba(0.1, 0.1, 0.1, 0.1);
 }

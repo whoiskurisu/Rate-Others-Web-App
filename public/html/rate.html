@@ -17,6 +17,9 @@
 <!---------------------------------------------------------------------->
 
 <body>
+  <!-- Wrapper for nav bar and main body -->
+  <div id="wrapper">
+  
   <!-- Main text -->
   <div id="main-text">Give Your Ratings</div>
   <div id="container">
@@ -24,32 +27,49 @@
       <ion-icon name="caret-back-outline" class="arrow" id="left-arrow"></ion-icon>
     </div>
 
-<!---------------------------------------------------------------------->
+    <!---------------------------------------------------------------------->
 
     <!-- Image -->
     <div id="image">
-      <div id="stack1" class="stack"></div>
-      <div id="stack2" class="stack"></div>
     </div>
     <div class="button" onclick="loadImage()">
       <ion-icon name="caret-forward-outline" class="arrow" id="right-arrow"></ion-icon>
     </div>
   </div>
 
-<!---------------------------------------------------------------------->
+  <!---------------------------------------------------------------------->
 
   <!-- Rating input -->
   <div class="slide-container">
     <input type="range" min="1" max="10" value="5" class="slider" id="range" />
     <div id="rating-check">
-      <div id="rating">
-        <div id="rating-name">Rating: </div><span id="rating-value"></span>
-      </div>
-      <ion-icon name="checkmark-sharp" id="submit" onclick="rateSubmit()"></ion-icon>
+      <span id="rating-value"></span>
+      <ion-icon name="checkmark-outline" id="submit" onclick="rateSubmit()"></ion-icon>
     </div>
   </div>
+</div>
 
-<!---------------------------------------------------------------------->
+  <!---------------------------------------------------------------------->
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div id="footer-content">
+      <a href="/help">Help</a>
+      <a href="/terms">Terms and Conditions</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/guidelines">Site guidelines</a>
+    </div>
+    <div id="icons">
+      <ion-icon name="logo-facebook"></ion-icon>
+      <ion-icon name="logo-instagram"></ion-icon>
+      <ion-icon name="logo-twitter"></ion-icon>
+    </div>
+    <div id="copyright">
+      © 2024 - Present, rateothers.com, Inc. or its affiliates
+    </div>
+  </footer>
+
+  <!---------------------------------------------------------------------->
 
   <!-- JavaScript -->
   <script src="../js/rate.js"></script>

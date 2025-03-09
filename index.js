@@ -79,6 +79,16 @@ app.get("/userProfile/:username", async (req, res) => {
   }
 });
 
+app.get("/userStats/:username", async (req, res) => {
+  // Checking whether the username is valid in the URL
+  const user = await signupCollection.findOne({ Username: req.params.username })
+  if (user) {
+    res.sendFile(path.join(__dirname, "./public/html/userStats.html"));
+  } else {
+    res.status(404).json({ message: "Not found" })
+  }
+});
+
 app.get("/rate/:username", async (req, res) => {
   // Checking whether the username is valid in the URL
   const user = await signupCollection.findOne({ Username: req.params.username })

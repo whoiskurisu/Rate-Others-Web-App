@@ -6,12 +6,19 @@
 
 body {
   background-color: #fecd45;
-  max-width: 100%;
-  max-height: 100%;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------------------------------------------------------------- */
+
+#wrapper{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
 
 /* Nav Bar container */
 #container {
@@ -22,7 +29,6 @@ body {
   padding-right: 20px;
   height: 100px;
   background-color: #fecd45;
-  margin-bottom: -25px;
   margin-right: 30px;
   margin-left: 30px;
 }
@@ -63,7 +69,6 @@ body {
 
 /* Main body */
 #main-body {
-  height: 700px;
   background-color: #fecd45;
   display: flex;
   gap: 20px;
@@ -109,8 +114,9 @@ body {
 
 /* ---------------------------------------------------------------- */
 
-/* Footer  */
+/* Footer */
 #footer {
+  width: 100%;
   padding: 15px;
   background-color: black;
   color: white;
@@ -118,7 +124,7 @@ body {
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  font-family: "Lato", sans-serif;
+  font-family: "Lucida Handwriting", cursive;
 }
 
 #footer-content {
@@ -142,5 +148,4 @@ body {
 
 #copyright {
   font-size: 17px;
-  letter-spacing: 0.3px;
 }

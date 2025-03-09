@@ -22,9 +22,9 @@ function loadImage() {
 // Adding rating value to slider
 const value = document.querySelector("#rating-value");
 const input = document.querySelector(".slider");
-value.textContent = input.value;
+value.textContent = `${input.value}/10`;
 input.addEventListener("input", (event) => {
-  value.textContent = event.target.value;
+  value.textContent = `${event.target.value}/10`;
 });
 
 //----------------------------------------------------------------//
@@ -39,8 +39,8 @@ function rateSubmit() {
   const data = {
     'sentBy': SentBy,
     'sentTo': SentTo,
-    'ratingsGiven': value.textContent,
-    'ratingsReceived': value.textContent,
+    'ratingsGiven': value.textContent.split('/')[0],
+    'ratingsReceived': value.textContent.split('/')[0],
   };
 
   fetch("http://localhost:5000/api/v1/rate", {
