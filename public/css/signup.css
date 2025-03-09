@@ -5,19 +5,19 @@
 }
 
 #body {
-  background-image: url("../images/1.jpg");
-  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Sign up */
+/* ---------------------------------------------------------------- */
 
+/* Sign up Container*/
 .sign-up-container {
   display: flex;
   flex-direction: column;
   position: relative;
   align-items: center;
-  top: 60px;
-  left: 500px;
   border: 2px solid #0f1111;
   border-radius: 10px;
   overflow: hidden;
@@ -62,11 +62,9 @@
   text-align: center;
   font-weight: 530;
   width: 170px;
-  /* margin: 20px 0px 0px 20px; */
   font-family: "Courier New", monospace;
   padding: 3px;
   border: 2px solid black;
-  /* border-right: transparent; */
   border-left: transparent;
   border-top: transparent;
   border-radius: 4px;
@@ -77,7 +75,6 @@
 .inputPlaceholder {
   position: relative;
   border-bottom: 2px solid;
-  /* margin-left: 20px; */
   width: 365px;
   margin-top: 40px;
 }
@@ -119,34 +116,6 @@
   top: -20px;
 }
 
-/* Select tutor or student */
-.roles {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  justify-content: center;
-}
-
-.roles .roleBtn {
-  border: 1px solid black;
-  border-radius: 30px;
-  width: 150px;
-  height: 40px;
-  text-align: center;
-  align-content: center;
-  font-family: "Courier New", monospace;
-  font-size: 20px;
-  margin-top: 25px;
-  cursor: pointer;
-  background: whitesmoke;
-}
-
-.roleBtn:hover {
-  transform: scale(1.01);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-
 /* 'Sign up' Button */
 .btn {
   margin: 35px 0 20px 0px;
@@ -162,4 +131,3 @@
   font-weight: 500;
   font-family: "Courier New", monospace;
 }
-

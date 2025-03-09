@@ -2,10 +2,11 @@ const mongoose = require("mongoose");
 
 // Connecting to DB
 const connectDB = (url) => {
-return mongoose
-.connect(url)
+  return mongoose
+    .connect(url)
 }
 
+//----------------------------------------------------------------//
 
 // Schema for signup
 const signupSchema = new mongoose.Schema({
@@ -13,7 +14,7 @@ const signupSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-  },  
+  },
   LastName: {
     type: String,
     required: true,
@@ -49,6 +50,7 @@ const signupSchema = new mongoose.Schema({
 // Collection for signup
 const signupCollection = new mongoose.model("signup-data", signupSchema);
 
+//----------------------------------------------------------------//
 
 // Schema for profilePic
 // const profilePic = new mongoose.Schema({
@@ -66,6 +68,8 @@ const signupCollection = new mongoose.model("signup-data", signupSchema);
 
 // // Collection for profilePic
 // const profilePicCollection = new mongoose.model("profile-picture", profilePic);
+
+//----------------------------------------------------------------//
 
 // Exporting
 module.exports = { connectDB, signupCollection };

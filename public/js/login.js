@@ -1,8 +1,13 @@
-const iconClose = document.querySelector(".icon-close");
 // Icon close button
+const iconClose = document.querySelector(".icon-close");
 iconClose.addEventListener("click", () => location.href = "./");
 
-document.querySelector(".form-box").addEventListener("submit", (event) => {
+//----------------------------------------------------------------//
+
+// Form handling for login
+const form = document.querySelector('.form-box');
+
+form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const uname = document.querySelector("#uname").value;

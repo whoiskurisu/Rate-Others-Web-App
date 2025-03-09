@@ -2,10 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const fs = require("fs")
-const PORT = 5000;
 require('dotenv').config();
-
-// const { handleAPIcalls } = require("./endpoints/privAPIs.js"); // api handler
 
 //----------------------------------------------------------------//
 
@@ -44,6 +41,7 @@ const { signupCollection } = require("./mongodb");
 
 //----------------------------------------------------------------//
 
+// GET Requests
 // All pages
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/html/index.html"));
@@ -93,7 +91,8 @@ app.get("/rate/:username", async (req, res) => {
 
 //----------------------------------------------------------------//
 
-// All /api/v1 data
+// All /api/v1/users/ data
+
 app.get("/api/v1/users/:username", async (req, res) => {
   const user = await signupCollection.findOne({ Username: req.params.username })
   if (user) {
@@ -103,10 +102,7 @@ app.get("/api/v1/users/:username", async (req, res) => {
   }
 })
 
-//----------------------------------------------------------------//
-
-// GET requests that deal with /profilePic directory
-
+// Dealing with /profilePic directory
 // Sending user's latest profile picture
 app.get('/api/v1/users/:username/images', (req, res) => {
   const uploadsDir = path.join(__dirname, './public/images/profilePic/');
@@ -168,6 +164,7 @@ app.get("/api/v1/users/:username/random-image", (req, res) => {
 
 //----------------------------------------------------------------//
 
+// POST Requests
 // SignUp functionality
 app.post("/api/v1/signup", async (req, res) => {
   const checkUname = await signupCollection.findOne({ Username: req.body.Username })
@@ -215,25 +212,29 @@ app.post("/api/v1/login", async (req, res) => {
 // Rating functionality
 app.post("/api/v1/rate", async (req, res) => {
 
-    // Increment the total ratings given
-    await signupCollection.updateOne(
-      { Username: req.body.sentBy },
-      { $inc: { RatingsGiven: req.body.ratingsGiven } }
-    );
+  // Increment the total ratings given
+  await signupCollection.updateOne(
+    { Username: req.body.sentBy },
+    { $inc: { RatingsGiven: req.body.ratingsGiven } }
+  );
 
-    // Increment the total ratings received
-    await signupCollection.updateOne(
-      { Username: req.body.sentTo },
-      { $inc: { RatingsReceived: req.body.ratingsReceived } }
-    );
+  // Increment the total ratings received
+  await signupCollection.updateOne(
+    { Username: req.body.sentTo },
+    { $inc: { RatingsReceived: req.body.ratingsReceived } }
+  );
 
-    res.json({ success: true });
+  res.json({ success: true });
 
 });
+
+//----------------------------------------------------------------//
 
 // Console log only if the DB is connected to the server
 const { connectDB } = require('./mongodb');
 const { log } = require("console");
+const PORT = 5000;
+
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI)

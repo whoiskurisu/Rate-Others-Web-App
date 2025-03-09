@@ -3,7 +3,9 @@
 
 <head>
   <title>Start Rating</title>
+  <!-- CSS -->
   <link rel="stylesheet" href="../css/rate.css" />
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -12,30 +14,46 @@
   <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet" />
 </head>
 
+<!---------------------------------------------------------------------->
+
 <body>
+  <!-- Main text -->
   <div id="main-text">Give Your Ratings</div>
   <div id="container">
     <div class="button" onclick="loadImage()">
       <ion-icon name="caret-back-outline" class="arrow" id="left-arrow"></ion-icon>
     </div>
+
+<!---------------------------------------------------------------------->
+
+    <!-- Image -->
     <div id="image">
       <div id="stack1" class="stack"></div>
       <div id="stack2" class="stack"></div>
     </div>
-    <div class="button" onclick="loadImage()"> 
+    <div class="button" onclick="loadImage()">
       <ion-icon name="caret-forward-outline" class="arrow" id="right-arrow"></ion-icon>
     </div>
   </div>
 
+<!---------------------------------------------------------------------->
+
+  <!-- Rating input -->
   <div class="slide-container">
     <input type="range" min="1" max="10" value="5" class="slider" id="range" />
     <div id="rating-check">
-      <div id="rating"><div id="rating-name">Rating: </div><span id="rating-value"></span></div>
+      <div id="rating">
+        <div id="rating-name">Rating: </div><span id="rating-value"></span>
+      </div>
       <ion-icon name="checkmark-sharp" id="submit" onclick="rateSubmit()"></ion-icon>
     </div>
   </div>
 
+<!---------------------------------------------------------------------->
+
+  <!-- JavaScript -->
   <script src="../js/rate.js"></script>
+  <!-- Icons -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

@@ -2,8 +2,10 @@
 <html lang="en">
 
 <head>
-  <title>ROWA</title>
+  <title>Profile</title>
+  <!-- CSS -->
   <link rel="stylesheet" href="../css/userProfile.css" />
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -37,39 +39,43 @@
             <div class="ratings-title">Total Ratings <br>Received</div>
             <hr />
 
-            <div class="ratings-value"  id="received-ratings"></div>
+            <div class="ratings-value" id="received-ratings"></div>
           </div>
         </div>
       </div>
     </div>
+
+<!---------------------------------------------------------------------->
 
     <!-- Profile image upload  -->
     <div id="image-upload">
       <div id="overlay"></div>
 
       <div id="profile-content">
-        
+
         <div id="profile-title">Change Profile Picture</div>
 
         <!-- Close button -->
         <ion-icon name="close-outline" id="icon-close" onclick="togglePopup()"></ion-icon>
 
         <!-- Image -->
-        <div id="preview-image" ></div>
+        <div id="preview-image"></div>
 
         <!-- Upload and Submit buttons -->
         <form id="image-upload-form" onsubmit="handleFormSubmit(event)">
-        
+
           <!-- Creating label for CSS purpose -->
           <label for="image-upload-input" id="custom-image-upload">
             Choose File
           </label>
-          <input type="file" name="imageUpload" id="image-upload-input"/>
+          <input type="file" name="imageUpload" id="image-upload-input" />
           <input type="submit" value="Upload" id="image-submit" />
         </form>
       </div>
     </div>
   </div>
+
+<!---------------------------------------------------------------------->
 
   <!-- Footer -->
   <footer id="footer">
@@ -89,8 +95,9 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- JavaScript -->
   <script src="../js/userProfile.js"></script>
+  <!-- Fonts -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

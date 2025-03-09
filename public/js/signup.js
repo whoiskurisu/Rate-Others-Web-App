@@ -1,11 +1,10 @@
 // Icon close function
 const iconClose = document.querySelector(".icon-close");
-iconClose.addEventListener("click", close);
-function close() {
-    location.href = "/";
-}
+iconClose.addEventListener("click", () => location.href = "./");
 
-// API call on Sign up button
+//----------------------------------------------------------------//
+
+// Form handling for sign up
 const form = document.querySelector('#form');
 
 form.addEventListener('submit', event => {
@@ -27,8 +26,8 @@ form.addEventListener('submit', event => {
         'Username': uname,
         'Email': email,
         'Password': password,
-        'RatingsGiven' : initialRating,
-        'RatingsReceived' : initialRating,
+        'RatingsGiven': initialRating,
+        'RatingsReceived': initialRating,
     };
 
     if (password != cpassword) {
@@ -36,8 +35,7 @@ form.addEventListener('submit', event => {
         return;
     }
 
-
-   fetch("http://localhost:5000/api/v1/signup", {
+    fetch("http://localhost:5000/api/v1/signup", {
         method: "POST",
         headers: {
             "Content-type": "application/json",
