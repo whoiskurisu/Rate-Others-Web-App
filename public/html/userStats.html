@@ -23,28 +23,31 @@
 
         <!-- Profile Card -->
         <div id="profile-card">
+
             <div class="uname-and-rating-wrapper">
+                <!-- Username block -->
                 <div id="uname">
                     <ion-icon name="person-circle-outline" id="user-icon"></ion-icon>
                     <span id="uname-value"></span>
                 </div>
-                <div class="rating">
-                    <span class="rating-title">user rating</span>
+                <!-- User rating block -->
+                <div class="main-ratings">
+                    <span class="main-ratings-title">user rating</span>
                     <span class="special-rating" id="avg-rating">9.25</span>
                 </div>
             </div>
 
             <div class="uname-and-rating-wrapper">
-                <div class="rating">
-                    <span class="rating-title">received ratings from</span>
+                <div class="main-ratings">
+                    <span class="main-ratings-title">received ratings from</span>
                     <span class="rating-value" id="all-received-value"></span>
-                    <span class="rating-title">users</span>
+                    <span class="main-ratings-title">users</span>
 
                 </div>
-                <div class="rating">
-                    <span class="rating-title">given ratings to</span>
+                <div class="main-ratings">
+                    <span class="main-ratings-title">given ratings to</span>
                     <span class="rating-value" id="all-given-value"></span>
-                    <span class="rating-title">users</span>
+                    <span class="main-ratings-title">users</span>
                 </div>
             </div>
 
@@ -54,58 +57,13 @@
 
             <!---------------------------------------------------------------------->
 
-            <div class="detailed-rating-title-wrapper">
-                <div class="detailed-rating-title"><span>received ratings - stats</span></div>
+            <div class="general-ratings-title-wrapper">
+                <div class="general-ratings-title-main">received ratings - stats</div>
             </div>
 
+            <div class="general-ratings-wrapper" id="wrapper1"></div>
 
-            <div class="detailed-rating-wrapper">
-                <div class="rating">
-                    <span class="rating-title">rated '1'</span>
-                    <span class="rating-value special-rating" id="received1"> </span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '2'</span>
-                    <span class="rating-value" id="received2"> </span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '3'</span>
-                    <span class="rating-value" id="received3"> </span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '4'</span>
-                    <span class="rating-value" id="received4"> </span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '5'</span>
-                    <span class="rating-value" id="received5"> </span>
-                </div>
-            </div>
-
-            <!---------------------------------------------------------------------->
-
-            <div class="detailed-rating-wrapper">
-                <div class="rating">
-                    <span class="rating-title">rated '6'</span>
-                    <span class="rating-value" id="received6"> </span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '7'</span>
-                    <span class="rating-value" id="received7"> </span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '8'</span>
-                    <span class="rating-value" id="received8"> </span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '9'</span>
-                    <span class="rating-value" id="received9"> </span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '10'</span>
-                    <span class="rating-value special-rating" id="received10"> </span>
-                </div>
-            </div>
+            <div class="general-ratings-wrapper" id="wrapper2"></div>
 
             <!---------------------------------------------------------------------->
 
@@ -113,68 +71,13 @@
 
             <!---------------------------------------------------------------------->
 
-            <div class="detailed-rating-title-wrapper">
-                <div class="detailed-rating-title"><span>given ratings - stats</span></div>
+            <div class="general-ratings-title-wrapper">
+                <div class="general-ratings-title-main">given ratings - stat</div>
             </div>
 
-            <div class="detailed-rating-wrapper">
-                <div class="rating">
-                    <span class="rating-title">rated '1'</span>
-                    <span class="rating-value special-rating" id="given1"> </span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '2'</span>
-                    <span class="rating-value" id="given2"></span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '3'</span>
-                    <span class="rating-value" id="given3"></span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '4'</span>
-                    <span class="rating-value" id="given4"></span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '5'</span>
-                    <span class="rating-value" id="given5"></span>
-                </div>
-            </div>
+            <div class="general-ratings-wrapper" id="wrapper3"></div>
 
-            <!---------------------------------------------------------------------->
-
-            <div class="detailed-rating-wrapper">
-                <div class="rating">
-                    <span class="rating-title">rated '6'</span>
-                    <span class="rating-value" id="given6"></span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '7'</span>
-                    <span class="rating-value" id="given7"></span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '8'</span>
-                    <span class="rating-value" id="given8"></span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '9'</span>
-                    <span class="rating-value" id="given9"></span>
-                </div>
-                <div class="rating">
-                    <span class="rating-title">rated '10'</span>
-                    <span class="rating-value special-rating" id="given10"></span>
-                </div>
-            </div>
-
-            <!-- <div id="users-count-wrapper">
-                <div class="users-rated">
-                    <span class="users-rated-title">users rated</span>
-                    <span class="users-rated-value">100</span>
-                </div>
-                <div class="users-rated">
-                    <span class="users-rated-title">rated by users </span>
-                    <span class="users-rated-value">100</span>
-                </div>
-            </div> -->
+            <div class="general-ratings-wrapper" id="wrapper4"></div>
         </div>
     </div>
 

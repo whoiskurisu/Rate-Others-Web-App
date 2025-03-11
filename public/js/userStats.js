@@ -19,6 +19,33 @@ async function fetchData() {
     let userRating = 0;
 
     for (let i = 1; i <= 10; i++) {
+
+        const generalRatingReceived = document.createElement('div');
+        generalRatingReceived.className = "general-ratings";
+
+        const generalRatingGiven = document.createElement('div');
+        generalRatingGiven.className = "general-ratings";
+
+        const wrapperReceived = document.querySelector(i <= 5 ? '#wrapper1' : '#wrapper2');
+        const wrapperGiven = document.querySelector(i <= 5 ? '#wrapper3' : '#wrapper4');
+
+        generalRatingReceived.innerHTML = `<span class="general-ratings-title">rated '${i}'</span>
+                                    <span class="rating-value" id="received${i}"></span>`;
+        wrapperReceived.append(generalRatingReceived);
+
+        generalRatingGiven.innerHTML = `<span class="general-ratings-title">rated '${i}'</span>
+                                 <span class="rating-value" id="given${i}"></span>`;
+        wrapperGiven.append(generalRatingGiven);
+
+        if (i == 1 || i == 10) {
+            const specialRatingReceived = document.querySelector(`#received${i}`)
+            const specialRatingGiven = document.querySelector(`#given${i}`)
+
+            specialRatingReceived.classList.add('special-rating')
+            specialRatingGiven.classList.add('special-rating')
+
+        }
+
         const given = document.querySelector(`#given${i}`)
         const received = document.querySelector(`#received${i}`)
 

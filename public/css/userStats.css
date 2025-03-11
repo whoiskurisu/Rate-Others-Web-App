@@ -73,7 +73,7 @@ body {
     font-family: "Paytone One", sans-serif;
 }
 
-.uname-and-rating-wrapper .rating {
+.uname-and-rating-wrapper .main-ratings {
     border-radius: 20px;
     background-color: #f4db7d;
     height: 100px;
@@ -84,12 +84,12 @@ body {
     align-items: center
 }
 
-.uname-and-rating-wrapper .rating .rating-title {
+.uname-and-rating-wrapper .main-ratings .main-ratings-title {
     font-family: "Lucida Handwriting", cursive;
     font-size: 19px;
 }
 
-.uname-and-rating-wrapper .rating .rating-value {
+.uname-and-rating-wrapper .main-ratings .rating-value {
     font-family: "Paytone One", sans-serif;
     font-size: 50px;
     margin-top: -15px;
@@ -111,12 +111,12 @@ body {
 
 /*----------------------------------------------------------------*/
 
-.detailed-rating-title-wrapper {
+.general-ratings-title-wrapper {
     display: flex;
     justify-content: center;
 }
 
-.detailed-rating-title {
+.general-ratings-title-main {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,9 +124,6 @@ body {
     height: 50px;
     background-color: #f4db7d;
     border-radius: 20px;
-}
-
-.detailed-rating-title span {
     font-family: "Lucida Handwriting", cursive;
     font-size: 19px;
     font-weight: 100;
@@ -134,15 +131,14 @@ body {
 
 /*----------------------------------------------------------------*/
 
-.detailed-rating-wrapper {
+.general-ratings-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 50px;
-
 }
 
-.detailed-rating-wrapper .rating {
+.general-ratings {
     border-radius: 20px;
     background-color: #f4db7d;
     height: 100px;
@@ -153,13 +149,13 @@ body {
     align-items: center
 }
 
-.detailed-rating-wrapper .rating .rating-title {
+.general-ratings .general-ratings-title {
     font-family: "Lucida Handwriting", cursive;
     font-size: 19px;
     margin-bottom: -15px;
 }
 
-.detailed-rating-wrapper .rating .rating-value {
+.general-ratings .rating-value {
     font-family: "Paytone One", sans-serif;
     font-size: 50px
 }
