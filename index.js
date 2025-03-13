@@ -197,7 +197,6 @@ app.post("/api/v1/signup", async (req, res) => {
   }
   else {
     const { FirstName, LastName, Username, Email, Password, ratingData } = req.body;
-    console.log({ FirstName, LastName, Username, Email, Password })
     // Create a new user (excluding ratingData)
     await signupCollection.create({ FirstName, LastName, Username, Email, Password });
     await ratingCollection.create({ username: Username, ratingReceived: ratingData.ratingReceived, ratingGiven: ratingData.ratingGiven })
@@ -244,14 +243,12 @@ app.post("/api/v1/rate", async (req, res) => {
       // Incrementing counter for rating given by 1
       await ratingCollection.updateOne(
         { username: sentBy },
-        { $addToSet: { ratedUsers: sentTo } }, // Add ratedUser only if it's not already in the array
-        { upsert: true }, // Create a new document if the username doesn't exist
-        { $inc: { [`ratingGiven.${i}`]: 1 } }
+        { $addToSet: { ratedUsers: sentTo } , // Add ratedUser only if it's not already in the array
+         $inc: { [`ratingGiven.${i}`]: 1 } }
       );
       // Incrementing counter for rating received by 1
       await ratingCollection.updateOne(
-        { username: sentTo },
-        { upsert: true }, // Create a new document if the username doesn't exist
+        { username: sentTo }, 
         { $inc: { [`ratingReceived.${i}`]: 1 } }
       );
     }

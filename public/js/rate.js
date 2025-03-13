@@ -8,26 +8,21 @@ async function loadImage() {
   const ratedUsersData = await fetch(`http://localhost:5000/api/v1/users/${username}/ratings-data`);
   const ratedUsersJSON = await ratedUsersData.json();
 
-  console.log(ratedUsersJSON.ratedUsers)
+  const imageData = await fetch(`http://localhost:5000/api/v1/users/${username}/random-image`)
+  const imageJSON = await imageData.json()
 
-
-  fetch(`http://localhost:5000/api/v1/users/${username}/random-image`)
-    .then(response => response.json())
-    .then(data => {
-      // Getting the username from the image url
-      const username = data.imageUrl.split('/').pop().split('-')[0];
-      // If the user has already been rated then load another image
-      if (ratedUsersJSON.ratedUsers.includes(username)) {
-        loadImage();
-      } 
-      // If the user has not been rated then load fetched image
-      else {
-        const image = document.getElementById("image");
-        image.style.backgroundImage = `url('${data.imageUrl}')`
-        image.style.backgorundSize = 'cover'
-      }
-    })
-    .catch(error => console.error("Error fetching image:", error));
+  // Getting the username from the image url
+  const fetchedUser = imageJSON.imageUrl.split('/').pop().split('-')[0];
+  // If the user has already been rated then load another image
+  if (ratedUsersJSON.ratedUsers.includes(fetchedUser)) {
+    loadImage();
+  }
+  // If the user has not been rated then load fetched image
+  else {
+    const image = document.getElementById("image");
+    image.style.backgroundImage = `url('${imageJSON.imageUrl}')`
+    image.style.backgorundSize = 'cover'
+  }
 };
 
 //----------------------------------------------------------------//
