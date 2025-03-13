@@ -8,14 +8,14 @@ fetchData();
 
 async function fetchData() {
 
-    const userValue = await fetch(`http://localhost:5000/api/v1/users/${username}`);
+    const userValue = await fetch(`http://localhost:5000/api/v1/users/${username}/ratings-data`);
     let userData = await userValue.json();
 
     const usernameValue = document.querySelector("#uname-value");
-    usernameValue.textContent = userData.Username;
+    usernameValue.textContent = userData.username;
 
-    let givenCount = 0;
-    let receivedCount = 0;
+    let givenCount = 0; // Default value for the total number of people who were rated by the user
+    let receivedCount = 0; // Default value for the total number of people who gave ratings to the user
     let userRating = 0;
 
     for (let i = 1; i <= 10; i++) {
@@ -49,19 +49,19 @@ async function fetchData() {
         const given = document.querySelector(`#given${i}`)
         const received = document.querySelector(`#received${i}`)
 
-        given.textContent = userData.RatingGiven[i];
-        received.textContent = userData.RatingReceived[i]
-
+        received.textContent = userData.ratingReceived[i];
+        given.textContent = userData.ratingGiven[i];
+        
         // To calculate the total number of ratings received
-        if (userData.RatingReceived[i] > 0) {
-            // Here i is the rating given and userData.RatingReceived[i] is the number of users who gave ratings
-            userRating += i * userData.RatingReceived[i];
+        if (userData.ratingReceived[i] > 0) {
+            // Here i is the rating given and userData.ratingReceived[i] is the number of users who gave ratings
+            userRating += i * userData.ratingReceived[i];
         }
-
-        // To calculate the total number of users who were rated
-        givenCount += userData.RatingGiven[i];
-        // To calculate the total number of users who gave ratings
-        receivedCount += userData.RatingReceived[i];
+        
+        // To calculate the total number of people who were rated by the user
+        givenCount += userData.ratingGiven[i];
+        // To calculate the total number of people who gave ratings to the user
+        receivedCount += userData.ratingReceived[i];
     }
     const allGiven = document.querySelector('#all-given-value')
     const allReceived = document.querySelector('#all-received-value')
@@ -78,4 +78,5 @@ async function fetchData() {
     } else {
         avgRating.textContent = avgRatingValue.toFixed(2); // Upto 2 decimal places
     }
+
 }

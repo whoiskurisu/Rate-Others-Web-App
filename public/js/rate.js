@@ -3,12 +3,25 @@ window.onload = function () {
   loadImage();
 };
 
-function loadImage() {
+async function loadImage() {
   const username = document.URL.split('/').pop();
+  const ratedUsersData = await fetch(`http://localhost:5000/api/v1/users/${username}/ratings-data`);
+  const ratedUsersJSON = await ratedUsersData.json();
+
+  console.log(ratedUsersJSON.ratedUsers)
+
+
   fetch(`http://localhost:5000/api/v1/users/${username}/random-image`)
     .then(response => response.json())
     .then(data => {
-      if (data.imageUrl) {
+      // Getting the username from the image url
+      const username = data.imageUrl.split('/').pop().split('-')[0];
+      // If the user has already been rated then load another image
+      if (ratedUsersJSON.ratedUsers.includes(username)) {
+        loadImage();
+      } 
+      // If the user has not been rated then load fetched image
+      else {
         const image = document.getElementById("image");
         image.style.backgroundImage = `url('${data.imageUrl}')`
         image.style.backgorundSize = 'cover'

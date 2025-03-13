@@ -29,15 +29,17 @@ form.addEventListener('submit', event => {
         ratingGiven[i] = 0;
     }
 
-    const data = {
+    const signupData = {
         'FirstName': fname,
         'LastName': lname,
         'Username': uname,
         'Email': email,
         'Password': password,
-        'RatingReceived': ratingReceived,
-        'RatingGiven': ratingGiven,
-
+        ratingData: {  // Nested object
+            username: uname,
+            ratingReceived: ratingReceived,
+            ratingGiven: ratingGiven
+        }
     };
 
     if (password != cpassword) {
@@ -50,7 +52,7 @@ form.addEventListener('submit', event => {
         headers: {
             "Content-type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(signupData),
     })
         .then((res) => {
             return res.json();

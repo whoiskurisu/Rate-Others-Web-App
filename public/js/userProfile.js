@@ -7,11 +7,15 @@ function togglePopup() {
 
 const username = document.URL.split('/').pop();
 
+// Onclick redirection to userStats
+document.querySelector('.rating').addEventListener('click', () => location.href = `/userStats/${username}`)
+
 // Fetching User Data
 fetchData();
 
 async function fetchData() {
     try {
+        // Fetching User Data
         const userValue = await fetch(`http://localhost:5000/api/v1/users/${username}`);
         const userData = await userValue.json();
 
@@ -21,17 +25,21 @@ async function fetchData() {
         const usernameValue = document.querySelector("#uname-value");
         usernameValue.textContent = `@${userData.Username}`;
 
+        // Fetching User Ratings
+        const userRatingsValue = await fetch(`http://localhost:5000/api/v1/users/${username}/ratings-data`);
+        const userRatingsData = await userRatingsValue.json();
+
         let receivedCount = 0;
         let userRating = 0;
 
         for (let i = 1; i <= 10; i++) {
             // Making sure the value is not 0
-            if (userData.RatingReceived[i] > 0) {
-                // Here i is the rating given and userData.RatingReceived[i] is the number of users who gave ratings
-                userRating += i * userData.RatingReceived[i];
+            if (userRatingsData.ratingReceived[i] > 0) {
+                // Here i is the rating given and userData.ratingReceived[i] is the number of users who gave ratings
+                userRating += i * userRatingsData.ratingReceived[i];
             }
             // To calculate the total number of users who gave ratings
-            receivedCount += userData.RatingReceived[i];
+            receivedCount += userRatingsData.ratingReceived[i];
         }
         // Average user rating = Total number of ratings received / Total number of users who gave ratings
         const avgRating = document.querySelector("#avg-rating");
@@ -43,6 +51,7 @@ async function fetchData() {
             avgRating.textContent = avgRatingValue.toFixed(2); // Upto 2 decimal places
         }
 
+        // Fetching User Image
         const userImage = await fetch(`http://localhost:5000/api/v1/users/${username}/images`);
         const userImageData = await userImage.json();
 

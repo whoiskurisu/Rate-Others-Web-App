@@ -37,6 +37,7 @@ app.post('/upload/:username', upload.single('imageUpload'), (req, res) => {
 
 // All MongoDB collections
 const { signupCollection } = require("./mongodb");
+const { ratingCollection } = require("./mongodb");
 // const { profilePicCollection } = require("./mongodb");
 
 //----------------------------------------------------------------//
@@ -105,6 +106,15 @@ app.get("/rate/:username", async (req, res) => {
 
 app.get("/api/v1/users/:username", async (req, res) => {
   const user = await signupCollection.findOne({ Username: req.params.username })
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404).json({ message: "Not found" })
+  }
+})
+
+app.get('/api/v1/users/:username/ratings-data', async (req, res) => {
+  const user = await ratingCollection.findOne({ username: req.params.username })
   if (user) {
     res.json(user);
   } else {
@@ -186,7 +196,11 @@ app.post("/api/v1/signup", async (req, res) => {
     return res.json({ success: false, message: "Email already in use" });
   }
   else {
-    await signupCollection.create(req.body);
+    const { FirstName, LastName, Username, Email, Password, ratingData } = req.body;
+    console.log({ FirstName, LastName, Username, Email, Password })
+    // Create a new user (excluding ratingData)
+    await signupCollection.create({ FirstName, LastName, Username, Email, Password });
+    await ratingCollection.create({ username: Username, ratingReceived: ratingData.ratingReceived, ratingGiven: ratingData.ratingGiven })
     return res.status(200).json({ success: true, message: "Success" }); // JSON response
   }
 });
@@ -228,14 +242,17 @@ app.post("/api/v1/rate", async (req, res) => {
   for (let i = 1; i <= 10; i++) {
     if (ratingGiven == i && ratingReceived == i) {
       // Incrementing counter for rating given by 1
-      await signupCollection.updateOne(
-        { Username: sentBy },
-        { $inc: { [`RatingGiven.${i}`]: 1 } }
+      await ratingCollection.updateOne(
+        { username: sentBy },
+        { $addToSet: { ratedUsers: sentTo } }, // Add ratedUser only if it's not already in the array
+        { upsert: true }, // Create a new document if the username doesn't exist
+        { $inc: { [`ratingGiven.${i}`]: 1 } }
       );
       // Incrementing counter for rating received by 1
-      await signupCollection.updateOne(
-        { Username: sentTo },
-        { $inc: { [`RatingReceived.${i}`]: 1 } }
+      await ratingCollection.updateOne(
+        { username: sentTo },
+        { upsert: true }, // Create a new document if the username doesn't exist
+        { $inc: { [`ratingReceived.${i}`]: 1 } }
       );
     }
   }

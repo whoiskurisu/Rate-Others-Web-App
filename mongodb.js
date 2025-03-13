@@ -23,26 +23,19 @@ const signupSchema = new mongoose.Schema({
   Username: {
     type: String,
     required: true,
+    unique: true,
     trim: true,
   },
   Email: {
     type: String,
     required: true,
+    unique: true,
     trim: true,
   },
   Password: {
     type: String,
     required: true,
     trim: true,
-  },
-  // Since writing RatingGiven1 through RatingGiven10 is not efficient we can use an object as the field
-  RatingGiven: { 
-    type: Map,
-    of: Number 
-  },
-  RatingReceived: {
-     type: Map, 
-     of: Number 
   },
 });
 
@@ -51,25 +44,31 @@ const signupCollection = new mongoose.model("signup-data", signupSchema);
 
 //----------------------------------------------------------------//
 
-// Schema for profilePic
-// const profilePic = new mongoose.Schema({
-//   Username: {
-//     type: String,
-//     required: true,
-//     trim: true,
-//   },
-//   Email: {
-//     type: String,
-//     required: true,
-//     trim: true,
-//   },
-// });
+const ratingSchema = new mongoose.Schema({
+  username: { 
+    type: String, 
+    required: true, 
+    unique: true 
+  },
+  ratedUsers: { 
+    type: [String], 
+    default: [] 
+  },
+  // Since writing RatingGiven1 through RatingGiven10 is not efficient we can use an object as the field
+  ratingGiven: {
+    type: Map,
+    of: Number
+  },
+  ratingReceived: {
+    type: Map,
+    of: Number
+  },
+});
 
-// // Collection for profilePic
-// const profilePicCollection = new mongoose.model("profile-picture", profilePic);
+const ratingCollection = mongoose.model("rating-data", ratingSchema);
 
 //----------------------------------------------------------------//
 
 // Exporting
-module.exports = { connectDB, signupCollection };
+module.exports = { connectDB, signupCollection, ratingCollection };
 

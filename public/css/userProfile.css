@@ -64,6 +64,11 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+#edit-image:hover {
+  background-color: black;
+  color: #f4db7d;
+}
+
 #details-container {
   background-color: none;
   height: 100%;
@@ -121,7 +126,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  cursor: pointer;
+}
+
+.uname-and-rating-wrapper .rating:hover {
+  background-color: black;
+  color: #f4db7d;
 }
 
 .uname-and-rating-wrapper .rating .rating-title {
