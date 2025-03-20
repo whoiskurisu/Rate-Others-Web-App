@@ -8,20 +8,25 @@ body {
     background-color: #9daaf2;
     overflow-x: hidden;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    gap: 55px;
+    gap: 5vh;
 }
 
 /*----------------------------------------------------------------*/
 
+/* Wrapper */
+#wrapper{
+    display: flex;
+    justify-content: center;
+}
+
 /* Main container */
 #container {
+    width: 80vw;
     display: flex;
     flex-direction: column;
     padding: 20px;
-    margin-top: 25px;
+    margin-top: 5vh;
 }
 
 #title {

@@ -49,7 +49,21 @@ const { ratingCollection } = require("./mongodb");
 // GET Requests
 // All pages
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/html/index.html"));
+  // Extracting cookie from req.cookies
+  const cookie = req.cookies.auth_cookie;
+
+  if (!cookie) {
+    return res.sendFile(path.join(__dirname, "./public/html/index.html"));
+  } else {
+    jwt.verify(cookie, process.env.ACCESS_TOKEN_SECRET, (err) => {
+      if (err) {
+        return res.sendFile(path.join(__dirname, "./public/html/index.html"));
+      } else {
+        res.redirect('/home')
+      }
+    });
+  }
+
 });
 
 app.get("/signup", (req, res) => {
@@ -280,6 +294,14 @@ app.post("/api/v1/rate", authenticateCookie, async (req, res) => {
 
   res.json({ success: true });
 
+});
+
+//----------------------------------------------------------------//
+
+// Logout functionality
+app.post("/logout", (req, res) => {
+  res.clearCookie('auth_cookie');
+  res.json({ message: "Successfully logged out!" });
 });
 
 //----------------------------------------------------------------//

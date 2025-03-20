@@ -9,7 +9,6 @@ body {
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 /* ---------------------------------------------------------------- */
@@ -18,7 +17,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 90px;
+  gap: 12vh;
 }
 
 /* Nav Bar container */
@@ -28,7 +27,7 @@ body {
   align-items: end;
   padding-left: 20px;
   padding-right: 20px;
-  height: 100px;
+  height: 12vh;
   background-color: #fecd45;
   margin-right: 30px;
   margin-left: 30px;
@@ -70,10 +69,10 @@ body {
 
 /* Main body */
 #main-body {
+  height: 76vh;
   background-color: #fecd45;
   display: flex;
-  gap: 20px;
-  align-items: center;
+  gap: 2vw;
   justify-content: center;
 }
 
@@ -91,7 +90,6 @@ body {
   display: flex;
   gap: 20px;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   font-size: 75px;
   font-family: "Paytone One", sans-serif;
