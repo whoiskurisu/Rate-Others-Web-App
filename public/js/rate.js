@@ -3,12 +3,12 @@ window.onload = function () {
   loadImage();
 };
 
-async function loadImage() {
-  const username = document.URL.split('/').pop();
-  const ratedUsersData = await fetch(`http://localhost:5000/api/v1/users/${username}/ratings-data`);
+async function loadImage() { 
+
+  const ratedUsersData = await fetch(`http://localhost:5000/api/v1/users/get-ratings-data`);
   const ratedUsersJSON = await ratedUsersData.json();
 
-  const imageData = await fetch(`http://localhost:5000/api/v1/users/${username}/random-image`)
+  const imageData = await fetch(`http://localhost:5000/api/v1/users/get-random-image`)
   const imageJSON = await imageData.json()
 
   // Getting the username from the image url

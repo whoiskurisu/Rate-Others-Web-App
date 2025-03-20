@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const fs = require("fs")
+const jwt = require("jsonwebtoken")
+const cookieParser = require("cookie-parser")
 require('dotenv').config();
 
 //----------------------------------------------------------------//
@@ -10,6 +12,8 @@ require('dotenv').config();
 app.use(express.static(path.join(__dirname, "./public")));
 app.use(express.json()); // To parse the data in req.body so that we can access it in json
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+const { authenticateCookie } = require("./middleware")
 
 //----------------------------------------------------------------//
 
@@ -20,7 +24,7 @@ const storage = multer.diskStorage({
     cb(null, './public/images/profilePic/'); // Folder to store images
   },
   filename: function (req, file, cb) {
-    const username = req.params.username; // We get the username from POST request to '/upload/:username'
+    const username = req.decodedData.username; // We get the username from POST request to '/upload'
     const ext = path.extname(file.originalname); // path.extname gives the extension of the file
     cb(null, `${username}-${Date.now()}${ext}`); // Custom format: image-timestamp.EXT
   }
@@ -29,7 +33,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Image upload route
-app.post('/upload/:username', upload.single('imageUpload'), (req, res) => {
+app.post('/upload', upload.single('imageUpload'), (req, res) => {
   res.json("File uploaded successfully");
 });
 
@@ -48,21 +52,32 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/html/index.html"));
 });
 
-app.get("/profile", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/html/profile.html"));
-});
-
 app.get("/signup", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/html/signup.html"));
 });
 
 app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/html/login.html"));
+  // Extracting cookie from req.cookies
+  const cookie = req.cookies.auth_cookie;
+
+  if (!cookie) {
+    return res.sendFile(path.join(__dirname, "./public/html/login.html"));
+  } else {
+    jwt.verify(cookie, process.env.ACCESS_TOKEN_SECRET, (err) => {
+      if (err) {
+        return res.sendFile(path.join(__dirname, "./public/html/login.html"));
+      } else {
+        res.redirect('/home')
+      }
+    });
+  }
+
 });
 
-app.get("/home/:username", async (req, res) => {
-  // Checking whether the username is valid in the URL
-  const user = await signupCollection.findOne({ Username: req.params.username })
+app.get("/home", authenticateCookie, async (req, res) => {
+  // Getting the decoded cookie data from authenticateCookie middleware
+  const username = req.decodedData.username;
+  const user = await signupCollection.findOne({ Username: username })
   if (user) {
     res.sendFile(path.join(__dirname, "./public/html/home.html"));
   } else {
@@ -70,29 +85,32 @@ app.get("/home/:username", async (req, res) => {
   }
 });
 
-app.get("/userProfile/:username", async (req, res) => {
-  // Checking whether the username is valid in the URL
-  const user = await signupCollection.findOne({ Username: req.params.username })
+app.get("/profile", authenticateCookie, async (req, res) => {
+  // Getting the decoded cookie data from authenticateCookie middleware
+  const username = req.decodedData.username;
+  const user = await signupCollection.findOne({ Username: username })
   if (user) {
-    res.sendFile(path.join(__dirname, "./public/html/userProfile.html"));
+    res.sendFile(path.join(__dirname, "./public/html/profile.html"));
   } else {
     res.status(404).json({ message: "Not found" })
   }
 });
 
-app.get("/userStats/:username", async (req, res) => {
-  // Checking whether the username is valid in the URL
-  const user = await signupCollection.findOne({ Username: req.params.username })
+app.get("/stats", authenticateCookie, async (req, res) => {
+  // Getting the decoded cookie data from authenticateCookie middleware
+  const username = req.decodedData.username;
+  const user = await signupCollection.findOne({ Username: username })
   if (user) {
-    res.sendFile(path.join(__dirname, "./public/html/userStats.html"));
+    res.sendFile(path.join(__dirname, "./public/html/stats.html"));
   } else {
     res.status(404).json({ message: "Not found" })
   }
 });
 
-app.get("/rate/:username", async (req, res) => {
-  // Checking whether the username is valid in the URL
-  const user = await signupCollection.findOne({ Username: req.params.username })
+app.get("/rate", authenticateCookie, async (req, res) => {
+  // Getting the decoded cookie data from authenticateCookie middleware
+  const username = req.decodedData.username;
+  const user = await signupCollection.findOne({ Username: username })
   if (user) {
     res.sendFile(path.join(__dirname, "./public/html/rate.html"));
   } else {
@@ -104,8 +122,9 @@ app.get("/rate/:username", async (req, res) => {
 
 // All /api/v1/users/ data
 
-app.get("/api/v1/users/:username", async (req, res) => {
-  const user = await signupCollection.findOne({ Username: req.params.username })
+app.get("/api/v1/users/", authenticateCookie, async (req, res) => {
+
+  const user = await signupCollection.findOne({ Username: req.decodedData.username })
   if (user) {
     res.json(user);
   } else {
@@ -113,8 +132,8 @@ app.get("/api/v1/users/:username", async (req, res) => {
   }
 })
 
-app.get('/api/v1/users/:username/ratings-data', async (req, res) => {
-  const user = await ratingCollection.findOne({ username: req.params.username })
+app.get('/api/v1/users/get-ratings-data', authenticateCookie, async (req, res) => {
+  const user = await ratingCollection.findOne({ username: req.decodedData.username })
   if (user) {
     res.json(user);
   } else {
@@ -124,7 +143,7 @@ app.get('/api/v1/users/:username/ratings-data', async (req, res) => {
 
 // Dealing with /profilePic directory
 // Sending user's latest profile picture
-app.get('/api/v1/users/:username/images', (req, res) => {
+app.get('/api/v1/users/get-images', authenticateCookie, (req, res) => {
   const uploadsDir = path.join(__dirname, './public/images/profilePic/');
 
   fs.readdir(uploadsDir, (err, files) => {
@@ -132,7 +151,7 @@ app.get('/api/v1/users/:username/images', (req, res) => {
       return res.status(500).json({ error: 'Failed to read directory' });
     }
     // Filter user's images
-    const userImages = files.filter(file => file.split('-')[0] == req.params.username)
+    const userImages = files.filter(file => file.split('-')[0] == req.decodedData.username)
     const latestUserImage = userImages[userImages.length - 1];
 
     // If there is no image
@@ -160,7 +179,7 @@ app.get('/api/v1/users/:username/images', (req, res) => {
 });
 
 // Getting random profile pictures excluding the current user's
-app.get("/api/v1/users/:username/random-image", (req, res) => {
+app.get("/api/v1/users/get-random-image", authenticateCookie, (req, res) => {
   const uploadsDir = path.join(__dirname, "./public/images/profilePic/");
 
   fs.readdir(uploadsDir, (err, files) => {
@@ -168,7 +187,7 @@ app.get("/api/v1/users/:username/random-image", (req, res) => {
       return res.status(500).json({ error: "Failed to read directory" });
     }
 
-    const filteredImages = files.filter(file => file.split('-')[0] !== req.params.username)
+    const filteredImages = files.filter(file => file.split('-')[0] !== req.decodedData.username)
 
     if (filteredImages.length === 0) {
       return res.status(404).json({ error: "No images found" });
@@ -213,9 +232,12 @@ app.post("/api/v1/login", async (req, res) => {
   if (user) {
 
     if (user.Password === req.body.password) {
-      // Assigning token / Setting cookie
-      // const token = jwt.sign({ email: user.Email }, process.env.ACCESS_TOKEN_SECRET,  { expiresIn: "1hr" });
-      // res.cookie('auth_token', token, { httpOnly: true, secure: false })
+      // Setting cookie
+      const cookie = jwt.sign({ username: user.Username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30m" });
+
+      // httpOnly: true prevents accessing cookie using JS through document.cookie
+      // if set to false then it allows possiblities for cookie stealing via XSS  
+      res.cookie('auth_cookie', cookie, { httpOnly: true, secure: false })
 
       // Send back a response
       res.json({ message: "Login successful" });
@@ -231,7 +253,7 @@ app.post("/api/v1/login", async (req, res) => {
 //----------------------------------------------------------------//
 
 // Rating functionality
-app.post("/api/v1/rate", async (req, res) => {
+app.post("/api/v1/rate", authenticateCookie, async (req, res) => {
 
   const sentBy = req.body.sentBy;
   const ratingGiven = req.body.ratingGiven;
@@ -243,12 +265,14 @@ app.post("/api/v1/rate", async (req, res) => {
       // Incrementing counter for rating given by 1
       await ratingCollection.updateOne(
         { username: sentBy },
-        { $addToSet: { ratedUsers: sentTo } , // Add ratedUser only if it's not already in the array
-         $inc: { [`ratingGiven.${i}`]: 1 } }
+        {
+          $addToSet: { ratedUsers: sentTo }, // Add ratedUser only if it's not already in the array
+          $inc: { [`ratingGiven.${i}`]: 1 }
+        }
       );
       // Incrementing counter for rating received by 1
       await ratingCollection.updateOne(
-        { username: sentTo }, 
+        { username: sentTo },
         { $inc: { [`ratingReceived.${i}`]: 1 } }
       );
     }

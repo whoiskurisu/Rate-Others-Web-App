@@ -23,7 +23,7 @@ form.addEventListener("submit", (event) => {
     }).then(response => response.json())
         .then(data => {
             if (data.message == "Login successful") {
-                window.location.href = `/home/${uname}`; // Redirect to homepage after successful login
+                window.location.href = `/home`; // Redirect to homepage after successful login
             } else {
                 alert(data.message);  // Show error message if login failed
             }

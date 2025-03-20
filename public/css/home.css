@@ -54,7 +54,7 @@ body {
   border-bottom: 1px solid black;
 }
 
-#nav-content #userProfile {
+#nav-content #profile {
   text-decoration: none;
   cursor: pointer;
   border-radius: 45px;

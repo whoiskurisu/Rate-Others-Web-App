@@ -5,10 +5,8 @@ function togglePopup() {
 
 //----------------------------------------------------------------//
 
-const username = document.URL.split('/').pop();
-
-// Onclick redirection to userStats
-document.querySelector('.rating').addEventListener('click', () => location.href = `/userStats/${username}`)
+// Onclick redirection to stats
+document.querySelector('.rating').addEventListener('click', () => location.href = `/stats`)
 
 // Fetching User Data
 fetchData();
@@ -16,7 +14,7 @@ fetchData();
 async function fetchData() {
     try {
         // Fetching User Data
-        const userValue = await fetch(`http://localhost:5000/api/v1/users/${username}`);
+        const userValue = await fetch(`http://localhost:5000/api/v1/users`);
         const userData = await userValue.json();
 
         const name = document.querySelector("#name-value");
@@ -26,7 +24,7 @@ async function fetchData() {
         usernameValue.textContent = `@${userData.Username}`;
 
         // Fetching User Ratings
-        const userRatingsValue = await fetch(`http://localhost:5000/api/v1/users/${username}/ratings-data`);
+        const userRatingsValue = await fetch(`http://localhost:5000/api/v1/users/get-ratings-data`);
         const userRatingsData = await userRatingsValue.json();
 
         let receivedCount = 0;
@@ -52,7 +50,7 @@ async function fetchData() {
         }
 
         // Fetching User Image
-        const userImage = await fetch(`http://localhost:5000/api/v1/users/${username}/images`);
+        const userImage = await fetch(`http://localhost:5000/api/v1/users/get-images`);
         const userImageData = await userImage.json();
 
         if (userImageData.images) {
@@ -109,7 +107,7 @@ async function handleFormSubmit(event) {
     const formData = new FormData();
     formData.append("imageUpload", file); // Ensure this matches the field name in multer
 
-    await fetch(`http://localhost:5000/upload/${username}`, {
+    await fetch(`http://localhost:5000/upload`, {
         method: "POST",
         body: formData
     }).then(response => response.json())  // Wait for the response and convert to JSON

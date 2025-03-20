@@ -1,14 +1,14 @@
 // Icon close function
 const unameCard = document.querySelector("#uname");
 const username = document.URL.split('/').pop();
-unameCard.addEventListener("click", () => location.href = `/userProfile/${username}`);
+unameCard.addEventListener("click", () => location.href = `/profile`);
 
 // Fetching User Data
 fetchData();
 
 async function fetchData() {
 
-    const userValue = await fetch(`http://localhost:5000/api/v1/users/${username}/ratings-data`);
+    const userValue = await fetch(`http://localhost:5000/api/v1/users/get-ratings-data`);
     let userData = await userValue.json();
 
     const usernameValue = document.querySelector("#uname-value");

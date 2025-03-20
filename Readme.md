@@ -28,8 +28,12 @@ git clone https://github.com/whoiskurisu/Rate-Others-Web-App.git
 
 5. Check whether the dependencies are added to the ```package.json``` file.
 
-6. Run the server:
+6. Set up ```.env``` variables (MONGO_URI and ACCESS_TOKEN_SECRET)
+
+7. Run the server:
 ```
 node index.js
 ```
-7. Open your browser and go to ```localhost:5000```
+8. Open your browser and go to ```localhost:5000```
+
+<!-- Note: Need to add log out feature -->
